@@ -63,11 +63,20 @@ function paint() {
   }
 }
 
-function setStatus({ badge = '', caption = '' } = {}) {
+let lastStatus = null;
+
+function setStatus(make) {
+  // `make` is a function of the locale table so a locale switch can re-render it.
+  lastStatus = typeof make === 'function' ? make : () => make ?? {};
+  const { badge = '', caption = '' } = lastStatus(t());
   dom.badge.hidden = !badge;
   dom.badge.textContent = badge;
   dom.caption.textContent = caption;
   dom.status.hidden = !badge && !caption;
+}
+
+function restateStatus() {
+  if (lastStatus) setStatus(lastStatus);
 }
 
 function showGuidance(message) {
@@ -140,11 +149,11 @@ async function refresh() {
     cache.set(listKey(config.username), merged);
     document.body.dataset.live = 'ok';
     paint();
-    setStatus({
-      badge: t().live,
-      caption: [state.added > 0 ? t().added(state.added) : '', truncated ? t().truncated : '']
+    setStatus((txt) => ({
+      badge: txt.live,
+      caption: [state.added > 0 ? txt.added(state.added) : '', truncated ? txt.truncated : '']
         .filter(Boolean).join(' · '),
-    });
+    }));
     lazyReadmes();
   } catch (error) {
     onRefreshFailure(error);
@@ -155,7 +164,7 @@ function onRefreshFailure(error) {
   const limited = error instanceof RateLimitedError || error instanceof BudgetExceededError;
   const haveLocalCopy = state.repos.length > 0;
   document.body.dataset.live = haveLocalCopy ? 'stale' : 'error';
-  setStatus({ caption: limited ? t().ratelimited : t().offline });
+  setStatus((txt) => ({ caption: limited ? txt.ratelimited : txt.offline }));
   // Snapshot or cache already on screen? Keep it. Otherwise explain, don't blank.
   if (!haveLocalCopy) showGuidance(t().blocked(config.username));
 }
@@ -218,6 +227,7 @@ dom.locale.addEventListener('click', (event) => {
     btn.setAttribute('aria-pressed', btn.dataset.locale === state.locale ? 'true' : 'false');
   }
   paint();
+  restateStatus();
   lazyReadmes();
 });
 
@@ -264,7 +274,7 @@ async function boot() {
   if (fromCache) {
     // The cached list is still inside its TTL: spend no budget on a re-fetch.
     document.body.dataset.live = 'cached';
-    setStatus({ badge: t().cached });
+    setStatus((txt) => ({ badge: txt.cached }));
     afterPaint(lazyReadmes);
     return;
   }

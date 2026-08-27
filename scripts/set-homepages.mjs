@@ -40,13 +40,13 @@ const BACKUP = resolve(HERE, '..', 'data', 'homepage-backup.json');
 
 /**
  * repo name → the URL its Demo button should point at.
- * `placeholder: true` means "not deployed yet" — skipped unless asked for.
+ * `placeholder: false` means "not deployed yet" — skipped unless asked for.
  */
 const DEMOS = {
   'cc-anatomy': { url: 'https://cc-anatomy.vercel.app' },
   'pipeline-anatomy': { url: 'https://pipeline-anatomy.vercel.app' },
   'kids-coloring': { url: 'https://kids-coloring-demo.vercel.app' },
-  showfolio: { url: 'https://showfolio-demo.vercel.app', placeholder: true },
+  showfolio: { url: 'https://showfolio-nine.vercel.app', placeholder: false },
 };
 
 const argv = new Set(process.argv.slice(2));

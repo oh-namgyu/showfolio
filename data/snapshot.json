@@ -1,7 +1,27 @@
 {
-  "generated": "2026-08-27T04:47:16.275Z",
+  "generated": "2026-08-27T05:38:00.336Z",
   "username": "oh-namgyu",
   "repos": [
+    {
+      "name": "showfolio",
+      "description": "A static portfolio showcase that loads your public GitHub repos at runtime — new repos appear automatically with no rebuild. Parses the Korean-summary block from each README for bilingual cards. Snapshot fallback, zero build, zero keys.",
+      "language": "JavaScript",
+      "stargazers_count": 0,
+      "pushed_at": "2026-08-27T05:33:00Z",
+      "homepage": "https://showfolio-nine.vercel.app",
+      "topics": [
+        "github-api",
+        "korean",
+        "no-build",
+        "portfolio",
+        "showcase",
+        "static-site"
+      ],
+      "fork": false,
+      "archived": false,
+      "html_url": "https://github.com/oh-namgyu/showfolio",
+      "summaryKo": "GitHub 계정명 하나로 공개 repo 를 실시간으로 불러와 카드 그리드로 보여주는 정적 포트폴리오 쇼케이스입니다. 새 repo 를 공개하면 재배포 없이 자동으로 추가되고, 각 README 상단의 한글 요약 블록을 파싱해 한국어 카드 설명으로 씁니다."
+    },
     {
       "name": "songforge",
       "description": "Turn a topic into a finished, publishable song package: AI lyrics → music+vocals (ACE-Step) → chorus detection → 9:16 short + 16:9 music video → upload plan.",
@@ -30,7 +50,7 @@
       "language": "JavaScript",
       "stargazers_count": 0,
       "pushed_at": "2026-08-27T02:33:16Z",
-      "homepage": null,
+      "homepage": "https://pipeline-anatomy.vercel.app",
       "topics": [
         "automation",
         "case-study",
@@ -72,7 +92,7 @@
       "language": "JavaScript",
       "stargazers_count": 0,
       "pushed_at": "2026-08-26T08:46:00Z",
-      "homepage": null,
+      "homepage": "https://cc-anatomy.vercel.app",
       "topics": [
         "claude-code",
         "education",

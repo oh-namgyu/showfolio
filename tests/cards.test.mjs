@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 
 import {
   safeUrl, demoUrl, orderRepos, facets, matchesFilter, languageColor, FACET_LIMITS,
+  monthGroups, monthLabel,
 } from '../js/cards.js';
 
 const repo = (name, over = {}) => ({
@@ -96,4 +97,26 @@ test('languageColor is a fixed palette with a neutral default', () => {
   assert.equal(languageColor('JavaScript'), '#f1e05a');
   assert.equal(languageColor('Brainfuck'), '#9aa0a6');
   assert.equal(languageColor(null), '#9aa0a6');
+});
+
+test('monthGroups chunks a sorted list into push-month runs, newest first', () => {
+  const groups = monthGroups([
+    repo('a', { pushed_at: '2026-08-27T10:00:00Z' }),
+    repo('b', { pushed_at: '2026-08-02T10:00:00Z' }),
+    repo('c', { pushed_at: '2026-06-15T10:00:00Z' }),
+    repo('d', { pushed_at: 'not-a-date' }),
+  ]);
+  assert.deepEqual(groups.map((g) => g.key), ['2026-08', '2026-06', '']);
+  assert.deepEqual(groups[0].repos.map((r) => r.name), ['a', 'b']);
+  assert.deepEqual(groups[2].repos.map((r) => r.name), ['d']);
+});
+
+test('monthGroups of an empty list is empty', () => {
+  assert.deepEqual(monthGroups([]), []);
+});
+
+test('monthLabel localises the month heading and rejects bad keys', () => {
+  assert.equal(monthLabel('2026-08', 'en'), 'August 2026');
+  assert.equal(monthLabel('2026-08', 'ko'), '2026\ub144 8\uc6d4');
+  assert.equal(monthLabel('', 'en'), '');
 });

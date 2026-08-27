@@ -11,7 +11,7 @@ import { config } from './config.js';
 import { createClient, validateSnapshot, RateLimitedError, BudgetExceededError } from './github.js';
 import { createCache, listKey, readmeKey } from './cache.js';
 import { extractKoreanSummary } from './summary.js';
-import { orderRepos, facets, matchesFilter, renderGrid, renderSkeleton, renderChips } from './cards.js';
+import { orderRepos, facets, matchesFilter, renderGrid, renderGroupedGrid, renderSkeleton, renderChips } from './cards.js';
 import { TEXT, readLocale, writeLocale } from './i18n.js';
 
 const $ = (selector) => document.querySelector(selector);
@@ -46,7 +46,7 @@ function paint() {
   renderGrid(dom.pinnedGrid, pinned, ctx);
 
   dom.allTitle.textContent = t().repos;
-  renderGrid(dom.allGrid, rest, ctx);
+  renderGroupedGrid(dom.allGrid, rest, ctx);
 
   dom.allGrid.setAttribute('aria-busy', 'false');
   renderChips(dom.chips, facets(state.repos), state.filter, dom.tplChip, t().all);

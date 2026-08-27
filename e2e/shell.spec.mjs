@@ -69,6 +69,21 @@ test('pinned repos lead, the rest follow newest push first', async ({ page }) =>
   expect(await rest.allTextContents()).toEqual(['taskdeck']);
 });
 
+test('the grid groups repos under localised month headings', async ({ page }) => {
+  await openWithSnapshot(page, [
+    repoFixture('aug-a', { pushed_at: '2026-08-27T00:00:00Z' }),
+    repoFixture('aug-b', { pushed_at: '2026-08-02T00:00:00Z' }),
+    repoFixture('may-a', { pushed_at: '2026-05-05T00:00:00Z' }),
+  ]);
+  const heads = page.locator('[data-grid="all"] .group-head .group-title');
+  expect(await heads.allTextContents()).toEqual(['August 2026', 'May 2026']);
+  // Cards stay in one CSS grid; the heading rows carry no [data-repo].
+  await expect(page.locator('[data-grid="all"] [data-repo]')).toHaveCount(3);
+
+  await page.locator('[data-locale="ko"]').click();
+  expect(await heads.allTextContents()).toEqual(['2026\ub144 8\uc6d4', '2026\ub144 5\uc6d4']);
+});
+
 test('unpinned repos sort by push date, newest first', async ({ page }) => {
   await openWithSnapshot(page, [
     repoFixture('oldest', { pushed_at: '2026-01-01T00:00:00Z' }),

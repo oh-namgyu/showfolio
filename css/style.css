@@ -172,6 +172,18 @@ a { color: inherit; }
   color: var(--ink-faint);
 }
 
+.group-head { grid-column: 1 / -1; list-style: none; margin-top: 6px; }
+.grid .group-head:first-child { margin-top: 0; }
+
+.group-title {
+  margin: 0;
+  font-size: .78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .13em;
+  color: var(--ink-faint);
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(272px, 1fr));

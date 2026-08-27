@@ -179,6 +179,62 @@ export function renderGrid(grid, repos, ctx) {
   return repos.length;
 }
 
+/**
+ * Chunk an already-sorted repo list into push-month runs, newest first.
+ * Repos without a parseable date share one trailing '' group.
+ * @param {Array<Record<string, any>>} repos
+ * @returns {Array<{key: string, repos: Array<Record<string, any>>}>}
+ */
+export function monthGroups(repos) {
+  const dated = [];
+  const undated = [];
+  for (const repo of repos) {
+    const time = Date.parse(repo.pushed_at ?? '');
+    if (Number.isNaN(time)) { undated.push(repo); continue; }
+    const key = new Date(time).toISOString().slice(0, 7); // YYYY-MM
+    const last = dated[dated.length - 1];
+    if (last && last.key === key) last.repos.push(repo);
+    else dated.push({ key, repos: [repo] });
+  }
+  if (undated.length) dated.push({ key: '', repos: undated });
+  return dated;
+}
+
+/** 'YYYY-MM' → 'August 2026' / '2026년 8월'. */
+export function monthLabel(key, locale) {
+  const time = Date.parse(`${key}-01T00:00:00Z`);
+  if (Number.isNaN(time)) return '';
+  return new Intl.DateTimeFormat(locale === 'ko' ? 'ko-KR' : 'en-GB', {
+    year: 'numeric', month: 'long', timeZone: 'UTC',
+  }).format(new Date(time));
+}
+
+/**
+ * Like renderGrid, but with a full-width month heading before each push-month
+ * run. Headings are plain list items so the element keeps its single CSS grid
+ * (the layout and every `[data-repo]` selector are unchanged).
+ * @returns {number} how many cards were rendered
+ */
+export function renderGroupedGrid(grid, repos, ctx) {
+  const nodes = [];
+  for (const group of monthGroups(repos)) {
+    const label = monthLabel(group.key, ctx.locale);
+    if (label) {
+      const head = document.createElement('li');
+      head.className = 'group-head';
+      head.dataset.month = group.key;
+      const title = document.createElement('h3');
+      title.className = 'group-title';
+      title.textContent = label;
+      head.append(title);
+      nodes.push(head);
+    }
+    for (const repo of group.repos) nodes.push(buildCard(repo, ctx));
+  }
+  grid.replaceChildren(...nodes);
+  return repos.length;
+}
+
 /** Fill a grid with placeholder cards while the live list is in flight. */
 export function renderSkeleton(grid, template, count = 6) {
   const nodes = [];

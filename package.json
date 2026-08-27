@@ -1,0 +1,18 @@
+{
+  "name": "showfolio",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A static, zero-build GitHub portfolio showcase. New public repos appear automatically — no redeploy.",
+  "license": "MIT",
+  "scripts": {
+    "serve": "python3 -m http.server 6186 --bind 127.0.0.1",
+    "test": "node --test \"tests/*.test.mjs\"",
+    "snapshot": "node scripts/snapshot.mjs",
+    "e2e": "playwright test",
+    "e2e:install": "playwright install chromium"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.47.0"
+  }
+}

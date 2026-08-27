@@ -1,0 +1,351 @@
+{
+  "generated": "2026-08-27T04:47:16.275Z",
+  "username": "oh-namgyu",
+  "repos": [
+    {
+      "name": "songforge",
+      "description": "Turn a topic into a finished, publishable song package: AI lyrics → music+vocals (ACE-Step) → chorus detection → 9:16 short + 16:9 music video → upload plan.",
+      "language": "Python",
+      "stargazers_count": 0,
+      "pushed_at": "2026-08-27T02:45:33Z",
+      "homepage": null,
+      "topics": [
+        "ace-step",
+        "automation",
+        "cli",
+        "llm",
+        "music-generation",
+        "python",
+        "shorts",
+        "video"
+      ],
+      "fork": false,
+      "archived": false,
+      "html_url": "https://github.com/oh-namgyu/songforge",
+      "summaryKo": "주제 하나를 완성곡 패키지로 만듭니다 — AI 작사 → 작곡+보컬(ACE-Step) → 후렴 감지 → 9:16 쇼츠와 16:9 뮤직비디오 렌더 → 업로드 플랜까지 자동화합니다."
+    },
+    {
+      "name": "pipeline-anatomy",
+      "description": "Inside three real content-automation pipelines — an interactive case study of an audiobook line, a multi-channel content hub, and a story design-to-render bridge. Step-by-step animated diagrams, design-decision cards, EN/KO. Fully generalized; a two-line redaction gate keeps it that way.",
+      "language": "JavaScript",
+      "stargazers_count": 0,
+      "pushed_at": "2026-08-27T02:33:16Z",
+      "homepage": null,
+      "topics": [
+        "automation",
+        "case-study",
+        "content-automation",
+        "education",
+        "korean",
+        "pipelines",
+        "static-site"
+      ],
+      "fork": false,
+      "archived": false,
+      "html_url": "https://github.com/oh-namgyu/pipeline-anatomy",
+      "summaryKo": "1인이 실제로 운영 중인 콘텐츠 자동화 파이프라인 3종(오디오북 라인·멀티채널 콘텐츠 허브·스토리 설계→렌더 브리지)의 아키텍처를, 단계별 애니메이션과 설계 결정 해설로 배우는 인터랙티브 케이스 스터디입니다. 실명·채널·수치는 전부 일반화되어 있으며, EN/KO 전환을 지원합니다."
+    },
+    {
+      "name": "sketchforge",
+      "description": "A self-hosted Mermaid diagram studio — describe a diagram in one line, let an LLM draft it, then refine it conversationally with diff previews and version history. Works fully without an API key as a live Mermaid editor. Sanitized rendering, SVG/PNG/mmd export.",
+      "language": "Python",
+      "stargazers_count": 0,
+      "pushed_at": "2026-08-26T14:07:37Z",
+      "homepage": null,
+      "topics": [
+        "ai",
+        "anthropic",
+        "diagram-editor",
+        "diagrams",
+        "flask",
+        "mermaid",
+        "self-hosted"
+      ],
+      "fork": false,
+      "archived": false,
+      "html_url": "https://github.com/oh-namgyu/sketchforge",
+      "summaryKo": "한 줄 의도를 쓰면 LLM이 Mermaid 다이어그램을 그려주고, \"결제 실패 분기 추가해줘\" 같은 말로 수정을 반복(diff 미리보기·버전 관리)한 뒤 SVG/PNG로 내보내는 셀프호스트 다이어그램 스튜디오입니다. API 키가 없어도 수동 Mermaid 편집기+실시간 렌더러로 완전히 동작합니다."
+    },
+    {
+      "name": "cc-anatomy",
+      "description": "See how Claude Code actually runs — interactive, step-by-step simulations of the agent loop, slash commands, hooks and skills. Every step cites official docs. EN/KO bilingual, pure static, unofficial.",
+      "language": "JavaScript",
+      "stargazers_count": 0,
+      "pushed_at": "2026-08-26T08:46:00Z",
+      "homepage": null,
+      "topics": [
+        "claude-code",
+        "education",
+        "interactive-learning",
+        "korean",
+        "simulation",
+        "static-site",
+        "visualization"
+      ],
+      "fork": false,
+      "archived": false,
+      "html_url": "https://github.com/oh-namgyu/cc-anatomy",
+      "summaryKo": "Claude Code의 동작 원리(에이전트 루프·슬래시 명령·훅·스킬)를 입력을 바꿔가며 단계별 애니메이션으로 배우는 정적 웹앱입니다. 모든 스텝 설명에 공식 문서 인용 근거가 달려 있고, EN/KO를 전환할 수 있습니다."
+    },
+    {
+      "name": "loreforge",
+      "description": "Turn a one-line concept into a character & world bible — LLM-generated lore book with palette, signature lines and a master image prompt, plus optional visual board rendering. Self-hosted web UI.",
+      "language": "Python",
+      "stargazers_count": 0,
+      "pushed_at": "2026-08-26T05:54:30Z",
+      "homepage": null,
+      "topics": [
+        "ai",
+        "anthropic",
+        "character-design",
+        "flask",
+        "llm",
+        "self-hosted",
+        "worldbuilding",
+        "writing-tools"
+      ],
+      "fork": false,
+      "archived": false,
+      "html_url": "https://github.com/oh-namgyu/loreforge",
+      "summaryKo": "한 줄 컨셉으로 캐릭터·세계관 설정집을 만드는 스튜디오입니다 — LLM이 프로필·성격·대사·컬러 팔레트·영문 마스터 이미지 프롬프트를 생성하고, 선택적으로 비주얼 보드까지 렌더하며, 웹 UI에서 편집하고 단일 HTML로 내보내 공유합니다."
+    },
+    {
+      "name": "janusline",
+      "description": "Both sides of the story — search a topic, get a dual-sided news timeline (favourable left, unfavourable right) with a two-sided synthesis and IF scenarios. Self-hosted, keyless collection via Google News RSS.",
+      "language": "Python",
+      "stargazers_count": 0,
+      "pushed_at": "2026-08-26T05:54:27Z",
+      "homepage": null,
+      "topics": [
+        "anthropic",
+        "flask",
+        "media-literacy",
+        "news",
+        "research-tools",
+        "self-hosted",
+        "sentiment-analysis",
+        "timeline"
+      ],
+      "fork": false,
+      "archived": false,
+      "html_url": "https://github.com/oh-namgyu/janusline",
+      "summaryKo": "검색어 하나로 뉴스 양면 브리핑을 만듭니다 — 세로 타임라인의 왼쪽엔 긍정, 오른쪽엔 부정 기사를 시간순으로 배치하고, 하단에 양측 서사 종합과 IF 시나리오(근거 기사 인용 포함)를 대비해 보여줍니다. Google News RSS 무키 수집, 셀프호스트."
+    },
+    {
+      "name": "pub-project-auditor",
+      "description": "Audit a directory of local Git repositories with the Claude Code CLI.",
+      "language": "Python",
+      "stargazers_count": 0,
+      "pushed_at": "2026-08-26T05:54:10Z",
+      "homepage": null,
+      "topics": [
+        "ai-tools",
+        "claude-ai",
+        "claude-code",
+        "code-review",
+        "developer-tools",
+        "fastapi",
+        "security-audit",
+        "static-analysis"
+      ],
+      "fork": false,
+      "archived": false,
+      "html_url": "https://github.com/oh-namgyu/pub-project-auditor",
+      "summaryKo": "로컬 Git 저장소 폴더 전체를 Claude Code CLI로 일괄 감사하는 도구입니다."
+    },
+    {
+      "name": "web-audit-kit",
+      "description": "Non-invasive local-first site audit reporter for security, UX, architecture, and functional QA.",
+      "language": "JavaScript",
+      "stargazers_count": 0,
+      "pushed_at": "2026-08-26T05:54:05Z",
+      "homepage": null,
+      "topics": [
+        "accessibility",
+        "local-first",
+        "qa",
+        "reporting",
+        "security",
+        "web-audit"
+      ],
+      "fork": false,
+      "archived": false,
+      "html_url": "https://github.com/oh-namgyu/web-audit-kit",
+      "summaryKo": "설치형 사이트 감사 리포터입니다 — 대상 사이트를 건드리지 않는 비침습 방식으로 보안·UX·아키텍처·기능 QA를 한 번에 점검해 리포트를 만듭니다."
+    },
+    {
+      "name": "taskdeck",
+      "description": "A self-hostable Kanban TODO board with an optional, opt-in AI agent runner (Flask + vanilla JS).",
+      "language": "Python",
+      "stargazers_count": 0,
+      "pushed_at": "2026-08-26T05:54:03Z",
+      "homepage": null,
+      "topics": [
+        "flask",
+        "kanban",
+        "python",
+        "self-hosted",
+        "todo"
+      ],
+      "fork": false,
+      "archived": false,
+      "html_url": "https://github.com/oh-namgyu/taskdeck",
+      "summaryKo": "셀프호스트 칸반 TODO 보드입니다 — 코어는 외부 의존성 제로, 원하면 켜는(opt-in) AI 에이전트 러너를 붙일 수 있습니다."
+    },
+    {
+      "name": "claude-web-terminal",
+      "description": "A web terminal for Claude Code with Agent View — list/create/attach/stop background sessions from your browser.",
+      "language": "JavaScript",
+      "stargazers_count": 0,
+      "pushed_at": "2026-08-26T05:53:59Z",
+      "homepage": null,
+      "topics": [
+        "claude-code",
+        "developer-tools",
+        "pty",
+        "self-hosted",
+        "web-terminal",
+        "websocket"
+      ],
+      "fork": false,
+      "archived": false,
+      "html_url": "https://github.com/oh-namgyu/claude-web-terminal",
+      "summaryKo": "브라우저에서 Claude Code를 쓰는 셀프호스트 웹 터미널입니다. 백그라운드 세션의 목록·생성·접속·중지(Agent View)를 지원합니다."
+    },
+    {
+      "name": "prompt-rocket",
+      "description": "A voxel rocket-launch toy in the browser (Three.js) — charge, launch, and watch your Falcon fly.",
+      "language": "JavaScript",
+      "stargazers_count": 0,
+      "pushed_at": "2026-08-26T05:53:57Z",
+      "homepage": null,
+      "topics": [
+        "browser-game",
+        "game",
+        "threejs",
+        "toy",
+        "voxel",
+        "webgl"
+      ],
+      "fork": false,
+      "archived": false,
+      "html_url": "https://github.com/oh-namgyu/prompt-rocket",
+      "summaryKo": "브라우저에서 즐기는 복셀 로켓 발사 토이입니다(Three.js) — 차지하고, 발사하고, 나만의 팔콘이 날아가는 걸 구경하세요."
+    },
+    {
+      "name": "kids-coloring",
+      "description": "Touch coloring PWA for young children — 84 SVG outline templates, pastel/pearl/rainbow pens, decalcomanie, offline & installable. Static, no backend (Vite + TypeScript + Canvas).",
+      "language": "TypeScript",
+      "stargazers_count": 0,
+      "pushed_at": "2026-08-26T05:53:54Z",
+      "homepage": "https://kids-coloring-demo.vercel.app",
+      "topics": [
+        "canvas",
+        "children",
+        "coloring",
+        "drawing",
+        "kids",
+        "offline",
+        "pwa",
+        "typescript",
+        "vite",
+        "web-app"
+      ],
+      "fork": false,
+      "archived": false,
+      "html_url": "https://github.com/oh-namgyu/kids-coloring",
+      "summaryKo": "유아용 터치 색칠 PWA입니다 — SVG 도안 84종, 파스텔/펄/무지개 펜, 데칼코마니, 오프라인 설치 지원. 백엔드 없는 정적 앱입니다."
+    },
+    {
+      "name": "cross-verify-cli",
+      "description": "Pre-publish verification where the model that wrote the code is never the one that approves it — deterministic secret/license gate + an independent second-model review",
+      "language": "JavaScript",
+      "stargazers_count": 0,
+      "pushed_at": "2026-08-26T05:53:51Z",
+      "homepage": null,
+      "topics": [
+        "ai-agents",
+        "code-review",
+        "llm",
+        "secrets-scan",
+        "verification"
+      ],
+      "fork": false,
+      "archived": false,
+      "html_url": "https://github.com/oh-namgyu/cross-verify-cli",
+      "summaryKo": "코드를 작성한 모델이 스스로 승인하지 못하게 하는 공개 전 검증 도구입니다 — 결정적 시크릿/라이선스 게이트에 더해, 다른 모델이 독립적으로 2차 리뷰합니다."
+    },
+    {
+      "name": "codebase-dojo",
+      "description": "A Socratic tutor for your codebase — it asks why, and never just tells you.",
+      "language": null,
+      "stargazers_count": 0,
+      "pushed_at": "2026-08-26T05:53:49Z",
+      "homepage": null,
+      "topics": [
+        "claude-code",
+        "code-comprehension",
+        "developer-tools",
+        "education",
+        "learning",
+        "socratic-method"
+      ],
+      "fork": false,
+      "archived": false,
+      "html_url": "https://github.com/oh-namgyu/codebase-dojo",
+      "summaryKo": "내 코드베이스를 소재로 한 소크라테스식 튜터입니다 — 답을 알려주지 않고 \"왜\"를 물어서 코드 이해력을 훈련시킵니다."
+    },
+    {
+      "name": "codebase-context-mcp",
+      "description": "Static codebase analysis as MCP tools — give AI coding agents a map of your repo (import graph, API routes, frontend-to-backend edges) instead of burning tokens rediscovering it",
+      "language": "JavaScript",
+      "stargazers_count": 0,
+      "pushed_at": "2026-08-26T05:53:47Z",
+      "homepage": null,
+      "topics": [
+        "ai-agents",
+        "claude-code",
+        "mcp",
+        "model-context-protocol",
+        "static-analysis"
+      ],
+      "fork": false,
+      "archived": false,
+      "html_url": "https://github.com/oh-namgyu/codebase-context-mcp",
+      "summaryKo": "코드베이스 정적 분석 결과(임포트 그래프·API 라우트·프런트-백엔드 연결)를 MCP 도구로 제공합니다 — AI 에이전트가 매번 토큰을 태워 repo를 재탐색하는 대신 지도를 갖고 시작하게 합니다."
+    },
+    {
+      "name": "agent-workboard",
+      "description": "Claim board that keeps multiple AI coding agents (Claude Code, Codex, Gemini) from clobbering each other in the same codebase — REST server, live dashboard, CLI, and hook-based enforcement kit",
+      "language": "JavaScript",
+      "stargazers_count": 0,
+      "pushed_at": "2026-08-26T05:53:43Z",
+      "homepage": null,
+      "topics": [
+        "ai-agents",
+        "claude-code",
+        "coordination",
+        "developer-tools",
+        "multi-agent",
+        "rest-api"
+      ],
+      "fork": false,
+      "archived": false,
+      "html_url": "https://github.com/oh-namgyu/agent-workboard",
+      "summaryKo": "여러 AI 코딩 에이전트(Claude Code·Codex·Gemini)가 같은 코드베이스에서 서로 충돌하지 않도록 하는 자원 claim 보드입니다. REST 서버 + 실시간 대시보드 + CLI + 훅 기반 강제 키트로 구성됩니다."
+    },
+    {
+      "name": "oh-namgyu",
+      "description": "프로필",
+      "language": null,
+      "stargazers_count": 0,
+      "pushed_at": "2026-06-30T01:34:40Z",
+      "homepage": null,
+      "topics": [],
+      "fork": false,
+      "archived": false,
+      "html_url": "https://github.com/oh-namgyu/oh-namgyu",
+      "summaryKo": null
+    }
+  ]
+}

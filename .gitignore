@@ -1,0 +1,13 @@
+node_modules/
+.vercel
+test-results/
+playwright-report/
+blob-report/
+.DS_Store
+
+# local scratch from the homepage-setting script (stage 6)
+data/homepage-backup*
+
+# env files (preventive — this project uses no secrets)
+.env*
+!.env.example

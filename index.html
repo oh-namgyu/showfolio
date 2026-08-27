@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--
+  Two third-party hosts, both documented in SECURITY.md:
+    connect-src  api.github.com               — the repo list and README bodies
+    img-src      avatars.githubusercontent.com — the account avatar
+  Scripts and styles stay 'self'; there is no inline script or style.
+-->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://api.github.com; img-src 'self' data: https://avatars.githubusercontent.com; base-uri 'none'; form-action 'none'; object-src 'none'; frame-ancestors 'none'">
+<title>showfolio</title>
+<meta name="description" content="A static GitHub portfolio showcase — new public repos appear automatically, with no redeploy.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#grid">Skip to repositories</a>
+
+<header class="topbar">
+  <a class="account" data-profile href="https://github.com" target="_blank" rel="noopener noreferrer">
+    <img class="avatar" data-avatar alt="" width="48" height="48" hidden>
+    <span class="account-text">
+      <span class="account-name" data-account-name></span>
+      <span class="account-sub">on GitHub</span>
+    </span>
+  </a>
+  <div class="locale" role="group" aria-label="Language">
+    <button type="button" class="loc-btn" data-locale="en" aria-pressed="true">EN</button>
+    <button type="button" class="loc-btn" data-locale="ko" aria-pressed="false">KO</button>
+  </div>
+</header>
+
+<main class="view">
+
+  <p class="status" data-status hidden>
+    <span class="badge" data-badge hidden></span>
+    <span class="caption" data-caption></span>
+  </p>
+
+  <nav class="chips" data-chips aria-label="Filter repositories"></nav>
+
+  <section class="section" data-section="pinned" hidden>
+    <h2 class="section-title">Pinned</h2>
+    <ul class="grid" data-grid="pinned"></ul>
+  </section>
+
+  <section class="section" data-section="all">
+    <h2 class="section-title" data-all-title>Repositories</h2>
+    <ul class="grid" id="grid" data-grid="all"></ul>
+  </section>
+
+  <p class="empty" data-empty hidden>Nothing matches this filter.</p>
+
+  <section class="guidance" data-guidance hidden>
+    <h2 class="guidance-title">Nothing to show yet</h2>
+    <p class="guidance-text" data-guidance-text></p>
+    <p class="guidance-actions">
+      <a class="btn btn-code" data-guidance-link href="https://github.com" target="_blank" rel="noopener noreferrer">Open the GitHub profile</a>
+    </p>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>powered by <a href="https://github.com/oh-namgyu/showfolio" target="_blank" rel="noopener noreferrer">showfolio</a></p>
+</footer>
+
+<template id="tpl-card">
+  <li class="card-slot">
+    <article class="card">
+      <h3 class="card-name" data-name></h3>
+      <p class="card-summary" data-summary></p>
+      <p class="card-meta">
+        <span class="meta-lang" data-lang hidden>
+          <span class="dot" data-dot aria-hidden="true"></span>
+          <span data-lang-name></span>
+        </span>
+        <span class="meta-stars" data-stars hidden></span>
+        <span class="meta-updated" data-updated></span>
+      </p>
+      <p class="card-actions">
+        <a class="btn btn-demo" data-demo hidden target="_blank" rel="noopener noreferrer">Demo</a>
+        <a class="btn btn-code" data-code target="_blank" rel="noopener noreferrer">GitHub</a>
+      </p>
+    </article>
+  </li>
+</template>
+
+<template id="tpl-skeleton">
+  <li class="card-slot" data-skeleton>
+    <article class="card card-skeleton" aria-hidden="true">
+      <span class="sk sk-name"></span>
+      <span class="sk sk-line"></span>
+      <span class="sk sk-line sk-short"></span>
+      <span class="sk sk-meta"></span>
+    </article>
+  </li>
+</template>
+
+<template id="tpl-chip">
+  <button type="button" class="chip" data-chip aria-pressed="false"></button>
+</template>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

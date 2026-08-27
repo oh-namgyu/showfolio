@@ -1,0 +1,21 @@
+# The deploy is the static app only: index.html, css/, js/, data/, favicon.svg.
+# Everything below is repository furniture and must not be published.
+#
+# data/ is NOT excluded — data/snapshot.json is the offline first paint and has
+# to be served. docs/ is excluded for a second reason beyond tidiness: it holds
+# the screenshot PNGs, which belong in the repository but have no business
+# being fetched by a visitor.
+docs/
+tests/
+e2e/
+scripts/
+node_modules/
+playwright.config.mjs
+package.json
+package-lock.json
+test-results/
+playwright-report/
+blob-report/
+.github/
+CONTRIBUTING.md
+SECURITY.md

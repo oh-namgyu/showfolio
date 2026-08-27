@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# NOTE — neither job calls the GitHub REST API for data.
+#
+# showfolio's whole subject is api.github.com, so it would be easy to assume CI
+# talks to it. It does not. Both suites are fully mocked: the unit tests inject
+# a fake `fetch` into the client, and the e2e tests intercept api.github.com
+# with Playwright routes and answer from fixtures in e2e/helpers.mjs.
+#
+# That is deliberate on two counts. A runner shares its IP, and the anonymous
+# API budget is 60 requests per hour per IP — a live suite would fail for
+# reasons unrelated to the commit. And the interesting half of the behaviour is
+# failure: a 403 with X-RateLimit-Remaining: 0, a truncated Link header, a
+# corrupt payload. None of those can be requested from the real API; all three
+# can be mocked.
+
+jobs:
+  unit:
+    name: unit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+          cache: npm
+      # No browser download here: the unit suite is parser, mapping, budget and
+      # cache logic, and never opens one.
+      - run: npm ci
+      - run: node --test "tests/*.test.mjs"
+
+  e2e:
+    name: e2e (chromium)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      # playwright.config.mjs boots the static site with python3's stdlib
+      # server — no build step, no app server of our own, no container.
+      - run: npx playwright test

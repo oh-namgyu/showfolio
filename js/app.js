@@ -48,6 +48,7 @@ function paint() {
   dom.allTitle.textContent = t().repos;
   renderGrid(dom.allGrid, rest, ctx);
 
+  dom.allGrid.setAttribute('aria-busy', 'false');
   renderChips(dom.chips, facets(state.repos), state.filter, dom.tplChip, t().all);
   dom.empty.hidden = visible.length > 0;
   dom.empty.textContent = t().empty;
@@ -70,6 +71,7 @@ function setStatus({ badge = '', caption = '' } = {}) {
 }
 
 function showGuidance(message) {
+  dom.allGrid.setAttribute('aria-busy', 'false');
   dom.guidanceText.textContent = message;
   dom.guidance.hidden = false;
   dom.pinnedSection.hidden = true;
@@ -252,6 +254,7 @@ async function boot() {
     paint();
   } else {
     document.body.dataset.source = 'skeleton';
+    dom.allGrid.setAttribute('aria-busy', 'true');
     renderSkeleton(dom.allGrid, dom.tplSkeleton);
   }
 

@@ -35,7 +35,7 @@
 
 <main class="view">
 
-  <p class="status" data-status hidden>
+  <p class="status" data-status hidden role="status" aria-live="polite">
     <span class="badge" data-badge hidden></span>
     <span class="caption" data-caption></span>
   </p>
@@ -49,12 +49,12 @@
 
   <section class="section" data-section="all">
     <h2 class="section-title" data-all-title>Repositories</h2>
-    <ul class="grid" id="grid" data-grid="all"></ul>
+    <ul class="grid" id="grid" data-grid="all" aria-busy="false"></ul>
   </section>
 
-  <p class="empty" data-empty hidden>Nothing matches this filter.</p>
+  <p class="empty" data-empty hidden role="status">Nothing matches this filter.</p>
 
-  <section class="guidance" data-guidance hidden>
+  <section class="guidance" data-guidance hidden role="alert">
     <h2 class="guidance-title">Nothing to show yet</h2>
     <p class="guidance-text" data-guidance-text></p>
     <p class="guidance-actions">

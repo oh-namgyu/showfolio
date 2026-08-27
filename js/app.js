@@ -105,13 +105,18 @@ async function loadSnapshot() {
   }
 }
 
+/** Fill in summaries already sitting in the on-device README cache. */
+function withCachedSummaries(repos) {
+  return repos.map((repo) => ({
+    ...repo,
+    summaryKo: repo.summaryKo ?? cache.get(readmeKey(repo.name)) ?? null,
+  }));
+}
+
 /** Carry known Korean summaries over onto a freshly fetched list. */
 function mergeSummaries(fresh) {
   const known = new Map(state.repos.map((repo) => [repo.name, repo.summaryKo]));
-  return fresh.map((repo) => {
-    const cached = cache.get(readmeKey(repo.name));
-    return { ...repo, summaryKo: cached ?? known.get(repo.name) ?? null };
-  });
+  return withCachedSummaries(fresh.map((repo) => ({ ...repo, summaryKo: known.get(repo.name) ?? null })));
 }
 
 function countAdded(fresh) {
@@ -126,7 +131,8 @@ async function refresh() {
   try {
     const { repos, truncated } = await client.listRepos(config.username, { exclude: config.exclude ?? [] });
     const merged = mergeSummaries(repos);
-    state.added = countAdded(merged);
+    // "new since the snapshot" only means something when there was a baseline.
+    state.added = state.repos.length > 0 ? countAdded(merged) : 0;
     state.truncated = truncated;
     state.repos = merged;
     cache.set(listKey(config.username), merged);
@@ -145,13 +151,11 @@ async function refresh() {
 
 function onRefreshFailure(error) {
   const limited = error instanceof RateLimitedError || error instanceof BudgetExceededError;
-  document.body.dataset.live = state.repos.length > 0 ? 'stale' : 'error';
-  if (state.repos.length > 0) {
-    setStatus({ caption: limited ? t().ratelimited : t().offline });
-    return;
-  }
+  const haveLocalCopy = state.repos.length > 0;
+  document.body.dataset.live = haveLocalCopy ? 'stale' : 'error';
   setStatus({ caption: limited ? t().ratelimited : t().offline });
-  showGuidance(t().blocked(config.username));
+  // Snapshot or cache already on screen? Keep it. Otherwise explain, don't blank.
+  if (!haveLocalCopy) showGuidance(t().blocked(config.username));
 }
 
 // ------------------------------------------------- lazy README (KO mode only)
@@ -243,7 +247,7 @@ async function boot() {
   const repos = fromCache ? cached : await loadSnapshot();
 
   if (repos && repos.length > 0) {
-    state.repos = repos;
+    state.repos = withCachedSummaries(repos);
     document.body.dataset.source = fromCache ? 'cache' : 'snapshot';
     paint();
   } else {

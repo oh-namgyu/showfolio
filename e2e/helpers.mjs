@@ -68,6 +68,13 @@ export async function routeSnapshot(page, body) {
 export async function routeApi(page, options = {}) {
   const calls = { list: 0, readme: 0, urls: [] };
 
+  // GitHub exposes these to cross-origin readers; without the same header the
+  // browser hides them from fetch and the client cannot tell a rate limit from
+  // any other 403. Mirroring it keeps the mock honest.
+  const expose = {
+    'Access-Control-Expose-Headers': 'Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset',
+  };
+
   await page.route(API_GLOB, async (route) => {
     const url = route.request().url();
     calls.urls.push(url);
@@ -78,12 +85,12 @@ export async function routeApi(page, options = {}) {
       calls.readme += 1;
       const name = url.match(/\/repos\/[^/]+\/([^/]+)\/readme/)?.[1] ?? '';
       const body = options.readme ? options.readme(name) : null;
-      if (body == null) return route.fulfill({ status: 404, body: '' });
-      return route.fulfill({ status: 200, contentType: 'text/plain; charset=utf-8', body });
+      if (body == null) return route.fulfill({ status: 404, headers: expose, body: '' });
+      return route.fulfill({ status: 200, headers: expose, contentType: 'text/plain; charset=utf-8', body });
     }
 
     calls.list += 1;
-    const headers = options.listHeaders ?? {};
+    const headers = { ...expose, ...(options.listHeaders ?? {}) };
     const status = options.listStatus ?? 200;
     if (status !== 200) {
       return route.fulfill({ status, headers, contentType: 'application/json', body: '{"message":"nope"}' });
@@ -97,6 +104,36 @@ export async function routeApi(page, options = {}) {
   });
 
   return calls;
+}
+
+/**
+ * Pre-seed localStorage before the app boots.
+ * @param {import('@playwright/test').Page} page
+ * @param {Record<string, unknown>} entries raw values, keyed without the prefix
+ */
+export async function seedStorage(page, entries) {
+  await page.addInitScript((seed) => {
+    for (const [key, value] of Object.entries(seed)) {
+      window.localStorage.setItem(key, typeof value === 'string' ? value : JSON.stringify(value));
+    }
+  }, entries);
+}
+
+/** A cache entry as js/cache.js writes them. `ageMs` back-dates it. */
+export const cacheEntry = (data, ageMs = 0) => ({ v: 1, t: Date.now() - ageMs, d: data });
+
+/** Poll a counter until it stops moving, then return it. */
+export async function settled(read, quietMs = 400, timeoutMs = 6000) {
+  const deadline = Date.now() + timeoutMs;
+  let last = read();
+  let lastChange = Date.now();
+  while (Date.now() < deadline) {
+    await new Promise((resolve) => setTimeout(resolve, 80));
+    const now = read();
+    if (now !== last) { last = now; lastChange = Date.now(); }
+    else if (Date.now() - lastChange >= quietMs) return last;
+  }
+  return last;
 }
 
 /** Wait for the first paint to be complete. */

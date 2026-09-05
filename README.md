@@ -246,4 +246,4 @@ before it can be merged.
 
 ## License
 
-[MIT](LICENSE) © 2026 oh-namgyu.
+MIT — see [LICENSE](LICENSE). Security policy: [SECURITY.md](SECURITY.md).

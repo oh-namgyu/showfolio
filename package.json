@@ -15,6 +15,6 @@
     "homepages": "node scripts/set-homepages.mjs"
   },
   "devDependencies": {
-    "@playwright/test": "^1.47.0"
+    "@playwright/test": "^1.63.0"
   }
 }

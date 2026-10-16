@@ -216,9 +216,9 @@ which is why a `javascript:` homepage renders no button.
 ```bash
 npm ci                              # dev dependency: @playwright/test only
 npm run serve                       # python3 static server on 6186
-npm test                            # node --test — 57 unit tests
+npm test                            # node --test — 60 unit tests
 npx playwright install chromium     # once
-npx playwright test                 # e2e — 47 tests, chromium
+npx playwright test                 # e2e — 48 tests, chromium
 npm run snapshot                    # regenerate data/snapshot.json
 node scripts/shots.mjs              # regenerate the screenshots above
 ```

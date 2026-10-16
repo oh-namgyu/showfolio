@@ -199,9 +199,9 @@ showfolio 는 GitHub 계정으로 포트폴리오를 만드는 최초의 도구�
 ```bash
 npm ci                              # dev 의존성: @playwright/test 하나
 npm run serve                       # 6186 포트 python3 정적 서버
-npm test                            # node --test — 단위 57개
+npm test                            # node --test — 단위 60개
 npx playwright install chromium     # 최초 1회
-npx playwright test                 # e2e — chromium 47개
+npx playwright test                 # e2e — chromium 48개
 npm run snapshot                    # data/snapshot.json 재생성
 node scripts/shots.mjs              # 위 스크린샷 재생성
 ```

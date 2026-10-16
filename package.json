@@ -1,6 +1,6 @@
 {
   "name": "showfolio",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "description": "A static, zero-build GitHub portfolio showcase. New public repos appear automatically — no redeploy.",
